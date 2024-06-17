@@ -7,8 +7,8 @@ def parse_args():
     """ parsing the arguments that are used in for zero-shot inference using UrbanCLIP"""
     parser = argparse.ArgumentParser()
     parser.add_argument('--task', type=str, default='primary',
-                        choices=['primary', 'multi', 'transfer-london', 'transfer-singapore',],
-                        help='can be primary, multi, transfer-london, or transfer-singapore')
+                        choices=['primary', 'multi', 'transfer-london', 'transfer-singapore', 'walkability-amsterdam'],
+                        help='can be primary, multi, transfer-london, transfer-singapore or walkability-amsterdam')
     parser.add_argument('--taxonomy', type=str, default='UrbanCLIP', choices=['UrbanCLIP', 'function_name'],
                         help='can be UrbanCLIP or function_name (only using function name prompts)')
     parser.add_argument('--prompt_template', type=str, default='UrbanCLIP',

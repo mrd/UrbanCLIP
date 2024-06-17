@@ -101,12 +101,17 @@ def zeroshot_inference (args):
     elif prompt_template == 'Wu_without_SC':
         svi_templates = wu_templates_no_sc
 
-    uf_vocab_dict = json.load(open('./Utils/urban_taxonomy.json', 'r'), object_pairs_hook=OrderedDict)
+
+    if task == 'walkability-amsterdam':
+      uf_vocab_dict = json.load(open('./Utils/walkability_taxonomy.json', 'r'), object_pairs_hook=OrderedDict)
+    else:
+      uf_vocab_dict = json.load(open('./Utils/urban_taxonomy.json', 'r'), object_pairs_hook=OrderedDict)
     word_list = list(chain.from_iterable(list(uf_vocab_dict.values())))
 
     if taxonomy == 'function_name':
         uf_vocab_dict = dict(zip(list(uf_vocab_dict.keys()), list(uf_vocab_dict.keys())))
         word_list = list(uf_vocab_dict.keys())
+
 
     if task == 'primary' or task == 'multi':
         image_features = torch.load('./Emb/clip').to(torch.float32).to(device)
@@ -114,6 +119,8 @@ def zeroshot_inference (args):
         image_features = torch.load('./Emb/clip_london').to(torch.float32).to(device)
     elif task == 'transfer-singapore':
         image_features = torch.load('./Emb/clip_singapore').to(torch.float32).to(device)
+    elif task == 'walkability-amsterdam':
+        image_features = torch.load('./Emb/clip_ams').to(torch.float32).to(device)
 
     with open('./Utils/laion_emb_dict1.pkl', 'rb') as handle:
         laion_emb_dict1 = pickle.load(handle)
@@ -170,6 +177,12 @@ def zeroshot_inference (args):
                                      encoding="ISO-8859-1")
         inferred_funcs = np.asarray(top_1_list)
         ground_truth = np.asarray(image_list['primary_function'].tolist())
+
+    elif task == 'walkability-amsterdam':
+        image_list = pd.read_csv('./Data/Urban_scene_dataset_Amsterdam/image_list.csv',
+                                     encoding="ISO-8859-1")
+        inferred_funcs = np.asarray(top_1_list)
+        ground_truth = np.asarray(image_list['primary_function'].tolist(), dtype=int)
 
     acc_average = accuracy_score(ground_truth, inferred_funcs)
     f1_average = f1_score(ground_truth, inferred_funcs, average='weighted')
