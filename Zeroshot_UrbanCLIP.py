@@ -11,9 +11,9 @@ def parse_args():
                         help='can be primary, multi, transfer-london, transfer-singapore or walkability-amsterdam')
     parser.add_argument('--taxonomy', type=str, default='UrbanCLIP', choices=['UrbanCLIP', 'function_name'],
                         help='can be UrbanCLIP or function_name (only using function name prompts)')
-    parser.add_argument('--prompt_template', type=str, default='UrbanCLIP',
-                        choices=['UrbanCLIP', 'Wu', 'Photo', 'CLIP80', 'no_template', 'UrbanCLIP_SC', 'Wu_without_SC'],
-                        help= 'can be UrbanCLIP, Wu, Photo, CLIP80, no_template, UrbanCLIP_SC, Wu_without_SC, and please refer to the paper for more details'
+    parser.add_argument('--prompt_template', type=str, default='Percept',
+                        choices=['Percept', 'UrbanCLIP', 'Wu', 'Photo', 'CLIP80', 'no_template', 'UrbanCLIP_SC', 'Wu_without_SC'],
+                        help= 'can be Percept, UrbanCLIP, Wu, Photo, CLIP80, no_template, UrbanCLIP_SC, Wu_without_SC, and please refer to the paper for more details'
                         )
     parser.add_argument('--ensemble', type=str, default='mean', choices=['mean', 'zpe'])
     parser.add_argument('--device', type=str, default='cuda')

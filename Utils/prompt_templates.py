@@ -1,3 +1,9 @@
+percept_templates = [
+        '{}',
+        'A street photo of {} in Amsterdam.',
+        'A street photo of {}.'
+    ]
+
 urbanclip_templates = [
         '{}',
         'A street photo of {} with cars.',

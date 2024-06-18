@@ -74,7 +74,9 @@ def zeroshot_inference (args):
     logit_scale = model.logit_scale
 
 
-    if prompt_template == 'UrbanCLIP':
+    if prompt_template == 'Percept':
+        svi_templates = percept_templates
+    elif prompt_template == 'UrbanCLIP':
         svi_templates = urbanclip_templates
     elif prompt_template == 'CLIP80':
         svi_templates = openai80_templates

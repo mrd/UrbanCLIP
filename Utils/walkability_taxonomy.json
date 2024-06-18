@@ -1,0 +1,37 @@
+{
+    "awful walkability": [
+      "a road without sidewalks",
+      "a road with too many cars",
+      "a road with dangerous or missing crossings",
+      "a road surrounded by vacant land",
+      "nobody walking in the area"
+    ],
+    "bad walkability": [
+      "a road with broken sidewalks",
+      "a road with many cars",
+      "a road with inconvenient crossings",
+      "a place with very few shops",
+      "a place with few people walking"
+    ],
+    "neutral walkability": [
+      "a road with some sidewalks",
+      "a road with some cars",
+      "a road with some crossings",
+      "a place with some shops or homes",
+      "a place with some people walking"
+    ],
+    "good walkability": [
+      "a street with complete sidewalks on both sides",
+      "a street with just a few cars",
+      "a street with convenient crossings",
+      "a place with a good mix of shops and homes",
+      "a place with many people walking"
+    ],
+    "great walkability": [
+      "a street with wide, well maintained and complete sidewalks on both sides",
+      "a street with almost no cars",
+      "a street that is easy to cross",
+      "a place with a strong variety of shops and homes",
+      "a place with big crowds of people walking"
+    ]
+}
