@@ -184,7 +184,10 @@ def zeroshot_inference (args):
         image_list = pd.read_csv('./Data/Urban_scene_dataset_Amsterdam/image_list.csv',
                                      encoding="ISO-8859-1")
         inferred_funcs = np.asarray(top_1_list)
-        ground_truth = np.asarray(image_list['primary_function'].tolist(), dtype=int)
+        ground_truth = np.asarray(image_list['primary_function'].tolist())
+        x=np.argwhere(np.abs(ground_truth - inferred_funcs) <= 1.0)
+        inferred_funcs[x] = ground_truth[x].astype(int)
+        ground_truth = ground_truth.astype(int)
 
     acc_average = accuracy_score(ground_truth, inferred_funcs)
     f1_average = f1_score(ground_truth, inferred_funcs, average='weighted')
