@@ -6,13 +6,14 @@ from itertools import chain
 import pickle
 from collections import OrderedDict
 import pandas as pd
-from sklearn.metrics import f1_score, accuracy_score, jaccard_score
+from sklearn.metrics import f1_score, accuracy_score, jaccard_score, mean_squared_error, r2_score
 import json
 from Utils.prompt_templates import *
 from Utils.functions import *
 
 
 def zeroshot_classifier(model, device, logit_scale, classnames, templates, image_features, laion_features, ensemble):
+    #import pdb;pdb.set_trace()
     with torch.no_grad():
         zeroshot_weights = []
         if ensemble == 'mean':
@@ -184,6 +185,7 @@ def zeroshot_inference (args):
         image_list = pd.read_csv('./Data/Urban_scene_dataset_Amsterdam/image_list.csv',
                                      encoding="ISO-8859-1")
         inferred_funcs = np.asarray(top_1_list)
+        np.savez_compressed('urbanclip-walkability-amsterdam.npz', inferred_funcs)
         ground_truth = np.asarray(image_list['primary_function'].tolist())
         x=np.argwhere(np.abs(ground_truth - inferred_funcs) <= 1.0)
         inferred_funcs[x] = ground_truth[x].astype(int)

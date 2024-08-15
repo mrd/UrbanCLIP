@@ -13,8 +13,10 @@ with open(outputfile, 'w') as fp:
   for i,feat in enumerate(gj['features']):
     y, x = feat['geometry']['coordinates']
     url = feat['properties']['url']
+    imgid = feat['properties']['image_id']
     rating = feat['properties']['average_walkability']
     csvw.writerow([i,y,x,0,rating])
     imgfile = url[url.rfind('/')+1:]
-    print(f'mv img/{imgfile} Data/Urban_scene_dataset_Amsterdam/{i}.jpg')
+    print(f'{imgid},{url},{y},{x},{i}')
+    #print(f'mv img/{imgfile} Data/Urban_scene_dataset_Amsterdam/{i}.jpg')
     
